@@ -1,0 +1,188 @@
+/* Estilos generales */
+#app {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+}
+
+/* Navegación */
+.navbar {
+  background: #1e90ff;
+  color: white;
+  padding: 15px 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.nav-link {
+  margin-right: 20px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.nav-link:hover {
+  color: #e6f2ff;
+}
+
+.nav-link.router-link-active {
+  color: #ffeb3b;
+}
+
+/* Contenedor principal */
+.container {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.page {
+  padding: 20px;
+}
+
+/* Tarjetas de productos */
+.producto-card {
+  border: 1px solid #e0e0e0;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 6px;
+  transition: box-shadow 0.3s;
+}
+
+.producto-card:hover {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.producto-card h3 {
+  margin: 0 0 10px 0;
+  color: #333;
+}
+
+.descripcion {
+  color: #666;
+  margin: 5px 0;
+}
+
+.precio {
+  font-weight: bold;
+  color: #1e90ff;
+  font-size: 1.2em;
+  margin: 10px 0;
+}
+
+/* Formularios */
+.formulario {
+  max-width: 400px;
+}
+
+.input {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #1e90ff;
+  box-shadow: 0 0 5px rgba(30, 144, 255, 0.3);
+}
+
+/* Botones */
+.botones {
+  margin-top: 15px;
+}
+
+.btn {
+  padding: 10px 15px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+.btn-guardar {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.btn-editar {
+  background-color: #2196F3;
+  color: white;
+}
+
+.btn-eliminar {
+  background-color: #f44336;
+  color: white;
+}
+
+.btn-agregar {
+  background-color: #FF9800;
+  color: white;
+}
+
+.btn-cancelar {
+  background-color: #9E9E9E;
+  color: white;
+}
+
+.btn-vaciar {
+  background-color: #607D8B;
+  color: white;
+}
+
+/* Carrito */
+.item-carrito {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.item-nombre {
+  font-weight: bold;
+}
+
+.item-cantidad {
+  color: #666;
+}
+
+.item-precio {
+  color: #4CAF50;
+  font-weight: bold;
+}
+
+.carrito-vacio {
+  text-align: center;
+  color: #666;
+  padding: 40px;
+}
+
+.total {
+  text-align: right;
+  font-size: 1.2em;
+  margin: 20px 0;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+}
+
+.error {
+  color: #f44336;
+  text-align: center;
+  padding: 20px;
+}
