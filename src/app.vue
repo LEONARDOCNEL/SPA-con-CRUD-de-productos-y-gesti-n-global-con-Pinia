@@ -85,7 +85,7 @@
 <script setup>
 import { computed, reactive, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { useProductoStore, useCarritoStore } from './stores'
+import { useProductoStore, useCarritoStore } from './stores/index.js'
 
 const route = useRoute()
 const router = useRouter()
