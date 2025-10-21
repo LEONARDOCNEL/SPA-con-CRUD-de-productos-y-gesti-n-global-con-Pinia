@@ -47,7 +47,7 @@
       <!-- EDITAR PRODUCTO -->
       <div v-else-if="ruta.includes('/productos/') && ruta !== '/productos/crear'" class="page">
         <h2>Editar producto</h2>
-        <div v-if="productoActual" class="formulario">
+        <div v-if="productoActual.id" class="formulario">
           <input v-model="productoActual.nombre" class="input">
           <input v-model="productoActual.descripcion" class="input">
           <input v-model.number="productoActual.precio" type="number" class="input">
@@ -100,39 +100,54 @@ const carrito = computed(() => carritoStore.carrito)
 const totalArticulos = computed(() => carritoStore.totalArticulos)
 const totalPrecio = computed(() => carritoStore.totalPrecio)
 
-const nuevo = reactive({ nombre:'', descripcion:'', precio:0 })
-const productoActual = reactive({})
+// ✅ INICIALIZAR CON MÉTODOS DEL STORE
+const nuevo = reactive(productoStore.obtenerFormularioVacio())
+const productoActual = reactive(productoStore.obtenerFormularioVacio())
 
-// funciones CRUD
+// ✅ FUNCIONES SIMPLIFICADAS - Solo llaman a stores
 function crear() {
-  productoStore.crearProducto(nuevo)
-  Object.assign(nuevo, { nombre:'', descripcion:'', precio:0 })
+  const formularioReset = productoStore.crearYReset(nuevo)
+  Object.assign(nuevo, formularioReset)
   ir('/productos')
 }
+
 function editar(id) {
-  const p = productoStore.obtenerProductoPorId(id)
-  if (p) Object.assign(productoActual, { ...p })
-  ir(`/productos/${id}`)
+  const producto = productoStore.prepararEdicion(id)
+  if (producto) {
+    Object.assign(productoActual, producto)
+    ir(`/productos/${id}`)
+  }
 }
+
 function actualizar() {
-  productoStore.actualizarProducto(productoActual.id, productoActual)
+  productoStore.actualizarYFinalizar(productoActual.id, productoActual)
   ir('/productos')
 }
+
 function eliminar(id) {
   productoStore.eliminarProducto(id)
 }
+
 function agregar(p) {
-  carritoStore.agregar(p)
+  carritoStore.agregarAlCarrito(p)
 }
+
 function eliminarDelCarrito(id) {
   carritoStore.eliminar(id)
 }
+
 function vaciarCarrito() {
   carritoStore.vaciar()
 }
+
 function ir(path) {
   router.push(path)
 }
+
+// ✅ Watcher para resetear productoActual cuando cambia la ruta
+watch(ruta, (newRuta) => {
+  if (!newRuta.includes('/productos/') || newRuta === '/productos/crear') {
+    Object.assign(productoActual, productoStore.obtenerFormularioVacio())
+  }
+})
 </script>
-
-

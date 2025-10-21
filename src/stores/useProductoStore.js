@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia'
 
-// Store de productos
 export const useProductoStore = defineStore('productos', {
   state: () => ({
     productos: [
@@ -11,18 +10,41 @@ export const useProductoStore = defineStore('productos', {
       { id: 5, nombre: 'Sudadera', descripcion: 'Con capucha', precio: 40 }
     ]
   }),
+  
   actions: {
-    crearProducto(p) {
-      this.productos.push({ id: Date.now(), ...p })
+    crearProducto(producto) {
+      this.productos.push({ id: Date.now(), ...producto })
     },
+    
     actualizarProducto(id, nuevo) {
       const i = this.productos.findIndex(p => p.id == id)
       if (i !== -1) this.productos[i] = { id, ...nuevo }
     },
+    
     eliminarProducto(id) {
       this.productos = this.productos.filter(p => p.id != id)
+    },
+    
+    // ✅ NUEVAS ACCIONES - Toda la lógica aquí
+    crearYReset(producto) {
+      this.crearProducto(producto)
+      return this.obtenerFormularioVacio()
+    },
+    
+    prepararEdicion(id) {
+      const producto = this.obtenerProductoPorId(id)
+      return producto ? { ...producto } : null
+    },
+    
+    actualizarYFinalizar(id, producto) {
+      this.actualizarProducto(id, producto)
+    },
+    
+    obtenerFormularioVacio() {
+      return { nombre: '', descripcion: '', precio: 0 }
     }
   },
+  
   getters: {
     obtenerProductoPorId: s => id => s.productos.find(p => p.id == id)
   }
