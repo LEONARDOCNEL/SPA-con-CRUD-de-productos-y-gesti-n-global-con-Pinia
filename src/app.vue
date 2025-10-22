@@ -34,7 +34,7 @@
       <div v-else-if="ruta === '/productos/crear'" class="page"> 
         <h2>Crear producto</h2>
         <div class="formulario"> <!-- formulario de creación -->
-          <input v-model="nuevo.nombre" placeholder="Nombre" class="input"> < !-- campos del formulario -->
+          <input v-model="nuevo.nombre" placeholder="Nombre" class="input"> 
           <input v-model="nuevo.descripcion" placeholder="Descripción" class="input"> 
           <input v-model.number="nuevo.precio" type="number" placeholder="Precio" class="input">
           <div class="botones"> 
@@ -45,7 +45,7 @@
       </div>
 
       <!-- Editar producto -->
-      <div v-else-if="ruta.includes('/productos/') && ruta !== '/productos/crear'" class="page"> < !-- formulario de edición -->
+      <div v-else-if="ruta.includes('/productos/') && ruta !== '/productos/crear'" class="page"> 
         <h2>Editar producto</h2>
         <div v-if="productoActual.id" class="formulario">
           <input v-model="productoActual.nombre" class="input"> 
@@ -60,13 +60,13 @@
       </div>
 
       <!-- Carrito -->
-      <div v-else-if="ruta === '/carrito'" class="page"> < !-- vista del carrito -->
+      <div v-else-if="ruta === '/carrito'" class="page"> 
         <h2>Carrito</h2>
         <div v-if="carrito.length === 0" class="carrito-vacio"> 
           <p>Carrito vacío.</p>
         </div>
         <div v-else>
-          <div v-for="item in carrito" :key="item.id" class="item-carrito"> < !-- items en el carrito -->
+          <div v-for="item in carrito" :key="item.id" class="item-carrito"> 
             <span class="item-nombre">{{ item.nombre }}</span>
             <span class="item-cantidad">(x{{ item.cantidad }})</span>
             <span class="item-precio">${{ item.precio * item.cantidad }}</span>
