@@ -80,7 +80,7 @@ web_modules/
 
 # Nuxt.js build / generate output
 .nuxt
-dist
+#ist
 
 # Gatsby files
 .cache/
@@ -114,4 +114,4 @@ dist
 .pnp.*
 
 # Vite build output
-dist/
+#ist/
