@@ -28,7 +28,7 @@ export const useProductoStore = defineStore('productos', {
   }
 })
 
-// Store del carrito
+// Store de carrito de compras
 export const useCarritoStore = defineStore('carrito', {
   state: () => ({ carrito: [] }),
   actions: {

@@ -1,6 +1,6 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router' // Importa las funciones necesarias de vue router
 
-const routes = [
+const routes = [ // Define las rutas de la aplicación
   { 
     path: '/', 
     name: 'Inicio', 
@@ -31,7 +31,7 @@ const routes = [
   }
 ]
 
-export default createRouter({
-  history: createWebHistory(process.env.NODE_ENV === 'production' ? '/SPA-con-CRUD-de-productos-y-gesti-n-global-con-Pinia/' : '/'),
+export default createRouter({ // Crea y exporta el router
+  history: createWebHistory(process.env.NODE_ENV === 'production' ? '/SPA-con-CRUD-de-productos-y-gesti-n-global-con-Pinia/' : '/'), 
   routes
 })

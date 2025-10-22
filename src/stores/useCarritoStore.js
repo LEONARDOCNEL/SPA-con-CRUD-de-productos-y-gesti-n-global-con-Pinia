@@ -20,10 +20,10 @@ export const useCarritoStore = defineStore('carrito', {
       this.carrito = []
     },
     
-    // ✅ NUEVA ACCIÓN - Maneja toda la lógica del carrito
+    
     agregarAlCarrito(producto) {
       this.agregar(producto)
-      // Aquí podrías agregar más lógica: notificaciones, validaciones, etc.
+      
     }
   },
   

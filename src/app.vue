@@ -8,14 +8,14 @@
       <router-link to="/carrito" class="nav-link">Carrito ({{ totalArticulos }})</router-link>
     </nav>
 
-    <!-- RUTAS con clases CSS -->
-    <div class="container">
-      <div v-if="ruta === '/'" class="page">
+    <!-- Contenedor principal -->
+    <div class="container"> 
+      <div v-if="ruta === '/'" class="page"> 
         <h2>Inicio</h2>
         <p>SPA con Vue 3 + Pinia + Router. CRUD y carrito básico.</p>
       </div>
 
-      <!-- PRODUCTOS -->
+      <!-- Productos -->
       <div v-else-if="ruta === '/productos'" class="page">
         <h2>Productos</h2>
         <div v-for="p in productos" :key="p.id" class="producto-card">
@@ -30,7 +30,7 @@
         </div>
       </div>
 
-      <!-- CREAR PRODUCTO -->
+      <!-- Crear producto -->
       <div v-else-if="ruta === '/productos/crear'" class="page">
         <h2>Crear producto</h2>
         <div class="formulario">
@@ -44,7 +44,7 @@
         </div>
       </div>
 
-      <!-- EDITAR PRODUCTO -->
+      <!-- Editar producto -->
       <div v-else-if="ruta.includes('/productos/') && ruta !== '/productos/crear'" class="page">
         <h2>Editar producto</h2>
         <div v-if="productoActual.id" class="formulario">
@@ -59,7 +59,7 @@
         <div v-else class="error"><p>Producto no encontrado.</p></div>
       </div>
 
-      <!-- CARRITO -->
+      <!-- Carrito -->
       <div v-else-if="ruta === '/carrito'" class="page">
         <h2>Carrito</h2>
         <div v-if="carrito.length === 0" class="carrito-vacio">
@@ -100,11 +100,11 @@ const carrito = computed(() => carritoStore.carrito)
 const totalArticulos = computed(() => carritoStore.totalArticulos)
 const totalPrecio = computed(() => carritoStore.totalPrecio)
 
-// ✅ INICIALIZAR CON MÉTODOS DEL STORE
-const nuevo = reactive(productoStore.obtenerFormularioVacio())
-const productoActual = reactive(productoStore.obtenerFormularioVacio())
+// formularios reactivos
+const nuevo = reactive(productoStore.obtenerFormularioVacio()) // formulario para nuevo producto
+const productoActual = reactive(productoStore.obtenerFormularioVacio()) 
 
-// ✅ FUNCIONES SIMPLIFICADAS - Solo llaman a stores
+// funciones
 function crear() {
   const formularioReset = productoStore.crearYReset(nuevo)
   Object.assign(nuevo, formularioReset)
@@ -144,7 +144,7 @@ function ir(path) {
   router.push(path)
 }
 
-// ✅ Watcher para resetear productoActual cuando cambia la ruta
+// observar cambios en la ruta para resetear el formulario de edición
 watch(ruta, (newRuta) => {
   if (!newRuta.includes('/productos/') || newRuta === '/productos/crear') {
     Object.assign(productoActual, productoStore.obtenerFormularioVacio())

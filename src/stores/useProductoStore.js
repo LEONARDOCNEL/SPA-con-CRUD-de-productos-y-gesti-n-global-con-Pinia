@@ -25,7 +25,7 @@ export const useProductoStore = defineStore('productos', {
       this.productos = this.productos.filter(p => p.id != id)
     },
     
-    // ✅ NUEVAS ACCIONES - Toda la lógica aquí
+    
     crearYReset(producto) {
       this.crearProducto(producto)
       return this.obtenerFormularioVacio()
