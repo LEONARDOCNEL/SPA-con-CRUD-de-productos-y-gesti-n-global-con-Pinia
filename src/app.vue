@@ -10,19 +10,19 @@
 
     <!-- Contenedor principal -->
     <div class="container"> 
-      <div v-if="ruta === '/'" class="page"> 
+      <div v-if="ruta === '/'" class="page">  <!-- Página de inicio -->
         <h2>Inicio</h2>
         <p>SPA con Vue 3 + Pinia + Router. CRUD y carrito básico.</p>
       </div>
 
       <!-- Productos -->
-      <div v-else-if="ruta === '/productos'" class="page">
+      <div v-else-if="ruta === '/productos'" class="page"> <!-- Lista de productos -->
         <h2>Productos</h2>
-        <div v-for="p in productos" :key="p.id" class="producto-card">
+        <div v-for="p in productos" :key="p.id" class="producto-card"> <!-- tarjeta de productos -->
           <h3>{{ p.nombre }}</h3>
           <p class="descripcion">{{ p.descripcion }}</p>
           <p class="precio">${{ p.precio }}</p>
-          <div class="botones">
+          <div class="botones"> 
             <button @click="editar(p.id)" class="btn btn-editar">Editar</button>
             <button @click="eliminar(p.id)" class="btn btn-eliminar">Eliminar</button>
             <button @click="agregar(p)" class="btn btn-agregar">Agregar al carrito</button>
@@ -31,13 +31,13 @@
       </div>
 
       <!-- Crear producto -->
-      <div v-else-if="ruta === '/productos/crear'" class="page">
+      <div v-else-if="ruta === '/productos/crear'" class="page"> 
         <h2>Crear producto</h2>
-        <div class="formulario">
-          <input v-model="nuevo.nombre" placeholder="Nombre" class="input">
-          <input v-model="nuevo.descripcion" placeholder="Descripción" class="input">
+        <div class="formulario"> <!-- formulario de creación -->
+          <input v-model="nuevo.nombre" placeholder="Nombre" class="input"> < !-- campos del formulario -->
+          <input v-model="nuevo.descripcion" placeholder="Descripción" class="input"> 
           <input v-model.number="nuevo.precio" type="number" placeholder="Precio" class="input">
-          <div class="botones">
+          <div class="botones"> 
             <button @click="crear()" class="btn btn-guardar">Guardar</button>
             <button @click="ir('/productos')" class="btn btn-cancelar">Cancelar</button>
           </div>
@@ -45,10 +45,10 @@
       </div>
 
       <!-- Editar producto -->
-      <div v-else-if="ruta.includes('/productos/') && ruta !== '/productos/crear'" class="page">
+      <div v-else-if="ruta.includes('/productos/') && ruta !== '/productos/crear'" class="page"> < !-- formulario de edición -->
         <h2>Editar producto</h2>
         <div v-if="productoActual.id" class="formulario">
-          <input v-model="productoActual.nombre" class="input">
+          <input v-model="productoActual.nombre" class="input"> 
           <input v-model="productoActual.descripcion" class="input">
           <input v-model.number="productoActual.precio" type="number" class="input">
           <div class="botones">
@@ -60,13 +60,13 @@
       </div>
 
       <!-- Carrito -->
-      <div v-else-if="ruta === '/carrito'" class="page">
+      <div v-else-if="ruta === '/carrito'" class="page"> < !-- vista del carrito -->
         <h2>Carrito</h2>
-        <div v-if="carrito.length === 0" class="carrito-vacio">
+        <div v-if="carrito.length === 0" class="carrito-vacio"> 
           <p>Carrito vacío.</p>
         </div>
         <div v-else>
-          <div v-for="item in carrito" :key="item.id" class="item-carrito">
+          <div v-for="item in carrito" :key="item.id" class="item-carrito"> < !-- items en el carrito -->
             <span class="item-nombre">{{ item.nombre }}</span>
             <span class="item-cantidad">(x{{ item.cantidad }})</span>
             <span class="item-precio">${{ item.precio * item.cantidad }}</span>
@@ -82,8 +82,8 @@
   </div>
 </template>
 
-<script setup>
-import { computed, reactive, watch } from 'vue'
+<script setup> 
+import { computed, reactive, watch } from 'vue' 
 import { useRoute, useRouter } from 'vue-router'
 import { useProductoStore, useCarritoStore } from './stores/index.js'
 
@@ -94,10 +94,10 @@ const productoStore = useProductoStore()
 const carritoStore = useCarritoStore()
 
 // datos reactivos
-const ruta = computed(() => route.fullPath)
-const productos = computed(() => productoStore.productos)
+const ruta = computed(() => route.fullPath) 
+const productos = computed(() => productoStore.productos) 
 const carrito = computed(() => carritoStore.carrito)
-const totalArticulos = computed(() => carritoStore.totalArticulos)
+const totalArticulos = computed(() => carritoStore.totalArticulos) 
 const totalPrecio = computed(() => carritoStore.totalPrecio)
 
 // formularios reactivos
@@ -140,13 +140,13 @@ function vaciarCarrito() {
   carritoStore.vaciar()
 }
 
-function ir(path) {
+function ir(path) { 
   router.push(path)
 }
 
 // observar cambios en la ruta para resetear el formulario de edición
 watch(ruta, (newRuta) => {
-  if (!newRuta.includes('/productos/') || newRuta === '/productos/crear') {
+  if (!newRuta.includes('/productos/') || newRuta === '/productos/crear') { 
     Object.assign(productoActual, productoStore.obtenerFormularioVacio())
   }
 })
